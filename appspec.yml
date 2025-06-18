@@ -1,0 +1,17 @@
+version: 0.0
+os: windows
+
+files:
+  - source: index.html
+    destination: C:\inetpub\wwwroot\
+
+hooks:
+  BeforeInstall:
+    - location: scripts/setup-iis.ps1
+      timeout: 300
+      runas: Administrator
+
+  AfterInstall:
+    - location: scripts/restart-iis.ps1
+      timeout: 120
+      runas: Administrator
